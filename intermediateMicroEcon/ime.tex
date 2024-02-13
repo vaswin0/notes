@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath,amssymb}
-
+\usepackage{xcolor}
 
 \title{Intermediate Microeconomics}
 
@@ -13,9 +13,51 @@ $x =(x_1, x_2,...,x_n)$ where $n$ is the number of goods and $x_k$ is the quanti
 
 \section{Consumption Preference}
 
-A preference relation $\succeq$ is an ordering over the elements of  $X$.
-\\  $x \succeq y$ means " $x$ is atleast as good as  $y$". 
-\\ Strict preference($\succ$):  $x \succ y$ means  $x \succeq y$ and       $y \not \succsim x$ i.e. "x is better than y"
+
+
+\begin{itemize}
+
+	\item A preference relation $\succeq$ is an ordering over the elements of  $X$.
+ $x \succeq y$ means " $x$ is atleast as good as  $y$ or $ x$ is weakly preferred over  $y$". 
+	\item \textbf{ Strict preference($\succ$)}:  $x \succ y$ means  $x \succeq y$ ("$x$ is atleast as good as  $y$") and $y \not \succsim x$("$y$ is not atleast as good as  $x$) i.e. "$x$ is better than $y$" \\
+	\item \textbf{Indifference} (\sim) : $x \sim y$ mean $x\succeqy$ and  $y \succeq x$ i.e "$x$ is just as good as $y$" 
+	\item A preference relation $\succeq$ represents "preferences" of each individual.
+
+		
+\end{itemize}
+
+\section{Axioms of Rational Choice}
+
+ \begin{itemize}
+		 \item \textbf{Completeness}: If $x$ and  $y$ are any two consumption possibilities, the consumer can always specify exactly one of the following possibilities.  \[
+		 x \succ y, y \succ x, x \sim y
+		 .\] \textcolor{red}{Any alternative can be compared}
+
+ \item \textbf{ Transitivity}: $x \succeq y$ and  $ y \succeq z$  $\implies$  $ x \succeq z$ 
+\\ \textcolor{red}{Choices must be internally consistent}
+\item \textbf{Continuity}: If a consumer reports that $x \succ y$, then she must also report that  $x' \succ y$ for any  $y$ "close to" x.
+		
+		
+\end{itemize}
+
+
+\section{Utility}
+
+
+\begin{itemize}
+		\item A utility function $u:X \mapsto \mathbb{R} $ represents $\succeq$ if and only if for all  $x,y \in X$ 
+				\[
+				x \succeq y \Lonfleftrigharrow u(x) \geq u(y)
+				.\] 
+		\item The function is unique only up to an order-preserving transformation.
+		\item Any preference relation that can be represented by a continuous function is rational.
+\end{itemize}
+
+
+
+
+
+
 \end{document}
 
 
