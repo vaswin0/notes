@@ -1,57 +1,775 @@
-\documentclass{article}
-\usepackage{amsmath,amssymb}
+
+\documentclass{tufte-handout}
+
+% Graphics handling
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+\let\textlozenge\relax
+
+
+% Math and Symbols
+\usepackage{amsmath}  % Basic math symbols and environments
+%\usepackage{amssymb}  % Additional math symbols (includes \textlozenge)
+\usepackage{bm}       % Bold math symbols
+\usepackage{mathtools} % Extra math tools, fixes and enhancements
+
+% Fonts
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{gfsneohellenic}  % Custom font, replace if needed
+
+% Tables
+\usepackage{booktabs}  % Professional-quality tables
+
+% Unit handling
+\usepackage{units}     % Nicely formatted units
+
+% Verbatim handling
+\usepackage{fancyvrb}  % Customizable verbatim environments
+\fvset{fontsize=\normalsize}
+
+% Multicolumn support
+\usepackage{multicol}
+
+% Dummy text
+\usepackage{lipsum}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{backgrounds, arrows, shapes, positioning, calc, mindmap}
+\usepackage[edges]{forest}  % For tree structures
+
+% Color handling
 \usepackage{xcolor}
+\usepackage{xkcdcolors}  % XKCD color names
+
+% Theorems and propositions
+\newtheorem{prop}{Proposition}
+
+% Custom commands for highlighting
+\newcommand{\highlight}[2]{\colorbox{#1!17}{#2}}
+\newcommand{\highlightdark}[2]{\colorbox{#1!47}{#2}}
+
+% Bullet symbol
+\newcommand{\mybullet}{\textbullet\hspace{0.5em}}
+
+% Prevent overfull hbox warnings
+\hbadness=10000
+
+% Align tables properly
+\usepackage{array}
+\usepackage{ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+\newcolumntype{X}[1]{>{\RaggedRight\hspace*{0pt}}p{#1}}
+
+% For colored boxes
+\usepackage{tcolorbox}
+
+% Commands for probabilities and math symbols
+\newcommand{\lap}{\mathrm{Lap}}
+\newcommand{\pr}{\mathrm{Pr}}
+
+% Sets and bounds in math
+\newcommand{\Tset}{\mathcal{T}}
+\newcommand{\Dset}{\mathcal{D}}
+\newcommand{\Rbound}{\widetilde{\mathcal{R}}}
+
+% Handle potential conflict with \textlozenge
+% Let’s ensure \textlozenge is properly defined without conflicts
+\let\oldtextlozenge\textlozenge
+\renewcommand{\textlozenge}{\ensuremath{\lozenge}}
+
+% Additional useful packages
+\usepackage{wrapfig}   % Wrapping text around figures
+\usepackage{bbm}       % For bold math symbols like indicator functions
+\usepackage{comment}   % To comment out blocks of text
+
+% TikZ for annotation and diagrams
+\usetikzlibrary{arrows.meta, shapes, trees, mindmap}
+
+\usepackage{bibentry}
+
+\nobibliography*
+
+\bibliography{references}
+
+%*********************************************************
+
+
+
+
+
+
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[default]{gfsneohellenic}
+%\usepackage{amsmath} %amssymb}
+%\usepackage{amssymb}
+%\usepackage{wrapfig}
+%%\usepackage{textcomp}
+%\usepackage{xcolor}
+%\usepackage{upgreek}
+%\usepackage{graphicx}
+%\hbadness=10000 % Suppress underfull hbox warnings
+%\newtheorem{prop}{Proposition}
+%%\usepackage{newtxmath}
+%%\usepackage{mathptmx}
 
 \title{Intermediate Microeconomics}
 
 \begin{document}
+
+	
 
 The consumption set is denoted by $X$.
 If $x$, $y$ $\in X$, then x and y are potential consumption bundles.
 $x =(x_1, x_2,...,x_n)$ where $n$ is the number of goods and $x_k$ is the quantity of good $k$ in the consumer's consumption bundle. For consumer $i$, consumption set is denoted by $X_i$ and a consumption bundle $x_i = (x_{i1}, x_{12},..., x_{in})$
 
 
-\section{Consumption Preference}
+\section*{Consumption Preference}
 
 
 
 \begin{itemize}
 
-	\item A preference relation $\succeq$ is an ordering over the elements of  $X$.
- $x \succeq y$ means " $x$ is atleast as good as  $y$ or $ x$ is weakly preferred over  $y$". 
-	\item \textbf{ Strict preference($\succ$)}:  $x \succ y$ means  $x \succeq y$ ("$x$ is atleast as good as  $y$") and $y \not \succsim x$("$y$ is not atleast as good as  $x$) i.e. "$x$ is better than $y$" \\
-	\item \textbf{Indifference} (\sim) : $x \sim y$ mean $x\succeqy$ and  $y \succeq x$ i.e "$x$ is just as good as $y$" 
+		\item 	A preference relation $\succeq$ is an ordering over the elements of  $X$.It is a binary relation on the set of alternatives, allowing comparison of alternatives.
+	\item  $x \succeq y$ means  $x$ is atleast as good as  $y$ or $ x$ is weakly preferred over  $y$. 
+	\item \textbf{ Strict preference($\succ$)}:  $x \succ y$ means  $x \succeq y$ ("$x$ is atleast as good as  $y$") and $y \not \succeq x$ ( "$y$ is not atleast as good as  $x$") i.e. "$x$ is better than $y$"
+	
+	\item \textbf{Indifference} $(\sim)$ : $x \sim y$ mean $x \succeq y$ and  $y \succeq x$ i.e "$x$ is just as good as $y$" 
 	\item A preference relation $\succeq$ represents "preferences" of each individual.
 
 		
 \end{itemize}
 
-\section{Axioms of Rational Choice}
+\section*{Axioms of Rational Choice}
+Assumption: Individual choices are rational.
 
- \begin{itemize}
-		 \item \textbf{Completeness}: If $x$ and  $y$ are any two consumption possibilities, the consumer can always specify exactly one of the following possibilities.  \[
-		 x \succ y, y \succ x, x \sim y
-		 .\] \textcolor{red}{Any alternative can be compared}
+\begin{itemize}
+		 \item \textbf{Completeness}: If $x$ and  $y$ are any two consumption possibilities, the consumer can always specify exactly one of the following possibilities, $ x \succ y, y \succ x, x \sim y $
+	 	\marginnote{Any alternative can be compared}
+		\item \textbf{ Transitivity}: $x \succeq y$ and  $ y \succeq z$  $\implies$  $ x \succeq z$ 
+		\marginnote{Choices must be internally consistent}
+		\item \textbf{Continuity}: If a consumer reports that $x \succ y$, then she must also report that  $x' \succ y$ for any  $x'$ "close to" x.
+\end{itemize}	
 
- \item \textbf{ Transitivity}: $x \succeq y$ and  $ y \succeq z$  $\implies$  $ x \succeq z$ 
-\\ \textcolor{red}{Choices must be internally consistent}
-\item \textbf{Continuity}: If a consumer reports that $x \succ y$, then she must also report that  $x' \succ y$ for any  $y$ "close to" x.
-		
-		
-\end{itemize}
+\textbf{proposition:} If $\succeq$ is rational then, $\succ$ is irreflexive i.e $x \succ x$ never holds. $\succ$ is transitive. $\sim $ is reflexive and transitive.  if  $x \succ y \succeq z$ them  $ x \succ z$
 
 
-\section{Utility}
+
+
+
+
+
+\section*{Utility}
 
 
 \begin{itemize}
-		\item A utility function $u:X \mapsto \mathbb{R} $ represents $\succeq$ if and only if for all  $x,y \in X$ 
+		\item A utility function $u:X \to \mathbb{R} $ represents $\succeq$ if and only if for all  $x,y \in X$, where $X$ is a consumption set and  $x$ and  $y$ are consumption bundles.
 				\[
-				x \succeq y \Lonfleftrigharrow u(x) \geq u(y)
+				x \succeq y \Longleftrightarrow u(x) \geq u(y)
 				.\] 
-		\item The function is unique only up to an order-preserving transformation.
-		\item Any preference relation that can be represented by a continuous function is rational.
+		\item The function is unique only up to an order-preserving transformation. Monotonic transformations preserve the preference relations.
+		\item Any preference relation that can be represented by a continuous function is rational.This follows from completeness and transitivity of $\geq$ on $\mathbb{R}$. 		
 \end{itemize}
+\textbf{Local Non-satiation}: For every $ x \in X$ and every $\varepsilon > 0$ , there exists  $ y \in X$ such that  $\|y - x\| < \varepsilon$  and  $ y \succ x$
+\marginnote{More is always prefereed to less}. \\
+\textbf{Marginal Utility:} Consider a consumer who is consuming some bundle of goods $x := (x_1, x_2)$. How does the utility change as we give little more of good $1$. This rate of change is called Marginal Utility w.r.t good 1, i.e $MU_1$
+\[	MU_1 = \frac{\Delta U}{\Delta x_1} = \frac{U(x_1 + \Delta x_1, x_2) - U(x_1,x_2)}{\Delta x_1} 
+.\]
+
+\section*{Indifference Curves}
+
+\begin{itemize}
+		\item An IC represents those combinations of X and Y from which the individual derives same utility. $(x_1, y_1) \sim (x_2, y_2)$
+		\item There is an indifference curve passing through each point in the X-Y plane.
+		\item Indiferrence curves are contour lines of utility function.
+		\item Indifference curves should never intersect, since that will violate transitivity.
+		\item Indifference curves slope downwards i.e an IC can only have negative slope.( Local non-satiation)
+\end{itemize}
+\textbf{Marginal Rate of Substitution(MRS)}: The negative slope of indifference curve $U_1$ at some point is termed the marginal rate of substitution(MRS) at that point. That is,  \[
+		MRS = \left. -\frac{dY}{dX} \right|_{U=U_1}
+.\]
+
+\marginnote[-2cm]{MRS measures the Willingness to give up one good for another. The rate at which an individual would willingly give up an amont of one good (y) if he or she were compensated by receiving one more unit of another good (x).}
+where the notation indicates that the slope is to be calculated along the $U_1$ indifference curve. The MRS tells us something about the trades this person will voluntarily make.It is the rate at which a cosumer is just willing to substitute a small amount of good y for good x.
+
+\marginnote {We typically assume that \textcolor{blue}{MRS is strictly decreasing}, it follows from that if one has more of one good, say x, then they are willing to give up more of x for the same quantity of y.}
+The ratio $\frac{\Delta Y}{\Delta X}$ is the rate at which consumer is willing to substitute good Y for good X, at limit this ratio becomes MRS.
+
+%$(x,y) \rightarrow (x - \Delta x, y+\Delta y) \sim (x,y)$ 
+
+\textbullet  \textcolor{blue}{The assumption of a diminishing MRS is equivalent to the assumption that all combinations of x and y that are preferred or indifferent to a particular combination $x^*,y^*$ form a convex set.}
+
+
+
+
+\marginnote[-1.5cm]{ A set of points is said to be convex if any two points within the set can be joined be a straight line that is contained completely within the set.
+
+		A set  $X$ is \textcolor{blue}{convex} if $\forall$ $x,x' \in X$  \[
+		\alpha x + (1-\alpha)x' \in X \ \forall \alpha \in [0,1] 
+.\] 
+
+\textcolor{blue}{A real-valued function is convex} if $$\alpha f(x) + (1-\alpha)f(x') \geq f(\alpha x + (1-\alpha)x')$$
+
+The set of points on or above the graph of convex function is convex. The negative of a convex function is concave.
+
+A function is said to be \textcolor{blue}{quasi-convex} if \[
+		max \{f(x), f(x')\} \geq f(\alpha x + (1-\alpha)x') \  \forall \alpha \in [0,1]
+.\] 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textbullet   \textbf{Preference for balance.} Well-balanced bundles of goods are preferred to extreme bundles.\\
+\marginnote[1cm]{Indifference curves are strictly convex and utility functions are quasi-concave.
+MRS can be constant when ICs are linear.}
+\textbf{MRS and Marginal Utility:}Consider a change in consumption of each good $\Delta x, \Delta y$ that keeps utility constant i.e change in consumption that moves along the indifference curve.
+
+\[
+U(x,y) = U(x + \Delta x, y + \Delta y) \implies \Delta U = 0
+.\] 
+\[ \frac{\partial U}{\partial x}dx + \frac{\partial U}{\partial y}dy = \Delta U = 0
+.\] 
+\[
+MU_xdx + MU_yd y = 0
+.\] 
+ \[
+MRS = \frac{dy}{dx} = - \frac{MU_x}{MU_y} = \frac{\frac{\partial U}{\partial x}}{\frac{\partial U}{\partial y}}
+.\] 
+
+Alternatively, the combination of the two goods that yield a specific level of utility, say k, are represented by solutions to the implicit equation $U(x,y) = k$. The trade-offs implied by such an equation are given by:
+
+
+\[
+		\left. \frac{dy}{dx} \right |_{U(x,y)=k} = - \frac{U_x}{U_y}
+.\] 
+
+That is the rate at which x can be traded for y is given by the negative of the ratio of the \textcolor{blue}{marginal utility} of good x to that of good y. 
+
+\textbullet   The MRS was defined as the negative (or absolute value) of this trade-off, 
+
+
+\[
+MRS =		\left. \frac{dy}{dx} \right |_{U(x,y)=k} = - \frac{U_x}{U_y}
+
+.\] 
+
+
+
+\textbullet  MRS at a particlular combination of goods will be unchanged no matter what specific utility ranking is used. Let
+$F[U(x,y)]$ be any monotonic transformation of the utility function with $F'(U) > 0$,
+
+ \[
+		 MRS = \frac{\partial{F}/ \partial{x}}{\partial{F}/ \partial{y}  } = \frac{F'(U)U_x}{F'(U)U_y} = \frac{U_x}{U_y}
+.\] 
+
+which is same as the MRS for the original utility function.
+
+
+\marginnote[-7cm]{
+
+		\textbullet  The marginal utility associated with a good decreases as more of that good is consumed i.e $\frac{\partial^2{U}}{\partial{x^2}}$ should be negative.
+
+\textbullet  diminishing marginal utility and diminishing MRS
+
+\textbullet  A function will have convex indifference curve provided the function itself is quasi-concave.
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Utility Functions for specific Preferences}
+
+\textbullet  \textcolor{blue}{Cobb-Douglas}: $U(x,y) = x^\alpha y^\beta$,  $0 < \alpha ,1$ $0 < \beta < 1$. The relative size of  $\alpha, \beta$ indicate the relative importance of the two goods to this individual.
+Since utility is unique only upto a monotonic transformation, the parameters are normalized so that $\alpha + \beta =1 $.
+Then  $U_(x,y) = x^\delta y^{1 - \delta}$ where $\delta = \frac{\alpha}{(\alpha + \beta)}$, $1- \delta = \frac{\beta}{(\alpha + \beta)}$
+
+\textbullet   \textcolor{blue}{Perfect Substitutes}: Two goods are perfect substitutes if the consumer is willing to substitute one good for other at a constant rate.
+
+$U(x,y) = \alpha x + \beta y$ where  $\alpha, \beta$ are positive constants. The ICs for this function are straight line. The MRS is constant and equal to  $\frac{\alpha}{\beta}$ along the entire IC. 
+
+
+\textbullet   \textcolor{blue}{perfect Complements}:These preferences would apply to goods that "go together". The pair of goods involved will be used in the fixed proportional relationship represnted by the vertices of the curves. changing x alone or y alone doesnt change utility. IC is L-shaped. $U(x,y) = min(\alpha x, \beta y)$  $\alpha > 0, \beta > 0$. Consumption will occur at the vertices of the IC.
+	
+\textbullet  \textcolor{blue}{ CES utility}: Constant Elasticity of Substitution function, $ U(x,y) = [x^\delta + y^\delta]^{\frac{1}{\delta}} $ $\delta \leq 1; \delta \neq 0$.
+This function incorporates all three of the utility function described previously, depending on the value of $\delta$ .
+$\delta = 1$ perfect substitute. As  $\delta $ approach zero, the function approaches the Cobb-Douglas. And as  $\delta$ approaches  $-\infty$ the function approaches the case of perfect complements. The monotonic transformation  $U^* = \frac{U^\delta}{\delta}$ yields the more tractable form 
+
+$$U(x,y) = \frac{x^\delta}{\delta} + \frac{y^\delta}{\delta}$$
+
+The phrase \textbf{Elasticity of Substitution} derives from the notion that the aforementioned utility functions correspond to various values for the substitution parameter, $\sigma$, which for this function function is given by  $ \sigma = \frac{1}{(1-\sigma)}$
+For \textcolor{red}{perfect substitutes}, $\sigma =  \infty$, for \textcolor{red}{fixed proportion} case has $\sigma = 0$ and  \textcolor{red}{Cobb-Douglas} has $\sigma = 1$
+
+\vspace{0.5cm}
+
+\textbf{Homothetic preferences} are preferences with marginal rate of substitution(MRS) which depend only on ratio of the amounts of the two goods but  not on the total quantities of the goods. In such a situation ICs are simple copies of those corresponding to lower utilities. Thus slopes of the curves depend only on the ratio $ \frac{x_2}{x_1}$, not on how far the curve is from the origin.
+
+
+\marginnote[-3cm]{\textbullet   perfect substitute : MRS is same at every point
+
+\textbullet  perfect complements: $MRS = \infty$ for  $\frac{y}{x} > \frac{\alpha}{\beta}$, undefined when $\frac{y}{x} = \frac{\alpha}{\beta}$ and zero when $\frac{y}{x} < \frac{\alpha}{\beta}$
+
+
+\textbullet  For general Cobb-Douglas function,
+$ MRS = \frac{\partial{U}/ \partial{x}}{\partial{U}/ \partial{y}  } = \frac{\alpha}{\beta}\frac{y}{x} $
+
+
+
+}
+
+
+
+
+\textbf{Quasilinear preference} Eg: $U(x_1,x_2) = x_1 + ln(x_2)$ Adding or removing $x_1$ lead to increase or decrease in utility respectively, linearly. MRS depends only on $x_2$
+
+
+\section*{Choice}
+
+Consumer chooose the most preferred bundle from their budget sets. The optimal choice is the bundle in the budget set that is on the highest indifference curve i.e the most preferred among the affordable set. The most preffered has to be on the budget line since "more is better". Thus the budget line is tangential to the indifference curve. If the budget line is not tangential to the IC and instead is a secant then there would be other bundles which are affordable and more preferred. MRS is the slope of IC at a given bundle of goods. Since optimal bundle correspond to the tangent point between IC and budget line, when the bundle is an interior optimum, MRS there must be equal to the slope of the budget line. so MRS at an interior optimum is the slope of the budget line.
+
+Equation of the budget line is,
+\[
+p_1x_1 + p_2x_2 = m \implies x_2 = \frac{m}{p_2} - \frac{p_1}{p_2}x_1
+.\] 
+So, $$MRS = -\frac{p_1}{p_2}$$
+
+MRS is the rate of exchange at which the consumer is just willing to stay put.
+
+ \[
+MRS = \frac{\Delta x_2}{\Delta x_1} =  -\frac{p_1}{p_2}
+.\] 
+The market is offering an exchange rate of $-\frac{p_1}{p_2}$, by giving up 1 unit of good 1, you can buy $\frac{p_1}{p_2}$ units of good 2.
+
+The optimal choice of goods 1 and goods 2 at some set of prices and income is called the cosumers's \textbf{demanded bundle}. So when prices and income change the consumer's optimal choice will change.
+
+
+
+\textbf{Demand Function} relates the optimal choice - the quantities demanded - to the different values of prices and income.
+
+\[
+x_1^* = f(I, p_1, p_2)\] $$  x_2^* = f(I, p_1, p_2)$$
+
+
+\section*{\textbf{Utility Maximization}}
+
+
+Consumer choice is determined by utility maximization constrained by a budget set. Formally, the optimal consumption choice of a rational price-taking consumer is obtained by solving
+
+
+\[
+		\max_{x_1, x_2, ..., x_n} U(x_1, x_2,...,x_n)
+.\] 
+subject to budget set,
+\[
+p_1x_1 + ... + p_nx_n \le I
+,\] 
+where $p_k$ is price of good $k$ and  $I$ is the income of the consumer. \\ 
+
+
+\textbf{Homogeneity}
+
+$p_1x_1 + ... + p_nx_n \le I$ is equivalent to $(tp_1)x_1 + ... +(tp_nx_n) \le tI, t>0$. So individual demand $x(p_1,..., p_n, I)$ is \textcolor{blue}{homogeneous of degree zero} in all prices and income.\\
+$x(p_1, ...,p_n, I) = x(tp_1, ..., tp_n, tI)$ i.e, demand cant change since the budget constraint hasnt changed.
+
+\marginnote[-2cm]{If we were to double all prices and income (or multiply them all by any positive constant), then the optimal quantity demanded would remain unchanged.}
+
+\marginnote{A function $f(x_1,x_2,...,x_n)$ is said to be \textcolor{blue}{homogeneous of degree k} if  $f(tx_1,tx_2,...,tx_n) = t^kf(x_1,x_2,...,x_n)$ for any $t>0$ 
+}
+
+
+
+\section*{\textbf{Demand Functions}}
+
+Solving the consumer utility maximization yields
+\[
+x_i^* = d_i(p_1,...,p_n, I)
+.\] 
+where $d_k$ is the individual's demand function for good k,  $p_k$ is the price of good k and I is individual's income.
+How does individual demand functions respond to changes in income and prices?.
+
+\marginnote[-2cm]{$x^* =  x(p_x,p_y,I)$, the notation stresses that prices and income are \textcolor{blue}{exogenous} to this process}
+
+
+
+
+\clearpage
+
+\textbf{Effect of increase in income:} As income increase from $I_1$ to $I_2$ to $I_3$, the optimal(utility maximizing) choices of X and Y are shown by the succesively higher points of tangency. Here the budget line shifts in parallel way because it's slope $-\frac{P_x}{P_y}$ does not change.
+
+\textbf{Normal and Inferior good:}A good $x_i$ for which  $\frac{\partial X_i}{\partial I} < 0$ over some range of income is an inferior good in that range i.e demand for good $x_i$ goes down as income increase.This does not have to happen over the entire range of income and prices but it happens locally, then it is called inferior good locally. If $\frac{\partial X_i}{\partial I} \ge 0$ over some range of income variation, then that good is said to be  normal in that range.
+
+%\cleardoublepage
+
+\vspace{2cm}
+
+\section{\textbf{Price Change and Demand}}
+
+\textbf{\centering  Income and Substitution Efects [ of a Price Decrease] }\\
+\vspace{0.5cm}
+
+When price of good x falls from $p^1_x$ to $p^2_x$, the budget line changes from  $ I = p_x^1x + p_yy$ to  $ I = p_x^2x + p_yy$. The utility maximizing choices shift from  $(x^*,y^*)$ to $(x^{**},y^{**})$. Two things happen when price of a good changes.
+
+\begin{enumerate}
+		\item The rate at which you can exchange/"substitute"  one good for another changes i.e the trade-off between the two goods that the market presents the consumer has changed. So, the change in demand due to the change in the rate of exchange between two good is called \textcolor{blue}{subsitution effect}.
+
+		\item The total purchasing power of your income is altered. The change in demand due to having more purchasing power is call
+ed \textcolor{blue}{ income effect.}
+
+\end{enumerate}
+
+
+
+
+The price  movement can be broken down into two analytically different hypothetical effects. First, we let the relative prices change and adjust money income so as to hold purchasing power constant, then we will let purchasing power adjust while holding the relative price constant.
+
+
+\clearpage
+
+
+Consider the decrease of price of $x$,  $p_x$. This means the budget line rotates around the vertical intercept,  $\frac{I}{p_y}$ and becomes flatter. This  shift in budget line can be broken down tinto two steps: first,\textcolor{blue}{ pivot} the budget line around the original demanded bundle [ so that slope of the budget line changes while its purchasing power stays constant] and the \textcolor{blue}{shift} the pivoted line out to the new demanded bundle [slope stays constant as pivoted line and the purchasing power changes].
+
+
+Consider the pivoted line. It has the same slope and thus the same relative proces as the final budget line. However, the money income associated with this budget line is different, since the vertical intercept is different. Since the original consumption bundle $(x,y)$ lies on the pivoted budget line, that consuption bundle is just affordable. The purchasing power of the consuemr has remained constant in the sense that the original bundle of goods is just affordable at the new pivoted line.
+
+Let  $I'$ be the amount of  money income that will just make the original consumption bundle affordable; this will be the amount of money income associated with the pivoted budget line.
+
+Since  $(x,y)$ is affordable at both  $(p_x^1,p_y,I)$ and  $(p_x^2,p_y,I')$
+
+\[
+I^2 = p_x^2x + p_yy .\] 
+\[ I^1 = p_x^1x + p_yy
+.\] 
+\[ I^2  - I^1 = x[p_x^2 - p_x^1]   .\] 
+
+So, the change in money income necessary to make the old bundle affordable at the new prices is just the original amount of consumption of good x times the change in prices.
+
+\[  \Delta I  = x \Delta p_x .\]
+
+Thus the pivoted budget line is $I + \Delta I = xp_x^2 + yp_y $,
+where the sign of  $\Delta I$ depends on the whether its a price drop or price rise. 
+
+When a price goes dwon, a consumer's purchasing power goes up, so the consumer's income has to decreased in order to keep purchasing power fixed. Similarly, when a price goes up, purchasing power foes drops, so the change in income necessary to keep purchasing power constant must be positive.
+
+
+Although $(x,y)$ is still affordable, it is not the generally the optimal puchase at the pivoted budget line. The movement from from original choice ( tangent point bw original budget line and IC) to the optimal choice on pivoted budget line is known as \textcolor{blue}{\textbf{substitution effect}}. It indicates how the consumer "substitutes" one good for the other when a price changes but the purchasing power remains constant. 
+
+The substitution effect, $\Delta x^s$, is the change in the demand for good  $x$ when the price  good  $x$ changes to  $p_x^2$ and at the money income changes to  $I^2$
+
+
+\[
+\Delta x^s =  x(p_x^2,I^2) - x(p_x,I)
+.\] 
+The subsitution effect is sometimes called the change in \textcolor{blue}{\textbf{compensated demand}}
+
+
+A parallel shift of the budget line is the movement that occurs when income changes while relative prices remain constant. This shift is called \textcolor{blue}{\textbf{income effect}}. Shift the compensated income,  $I^2$ back to  $I^1$, keeping the prices constant at  $(p_x^2, p_y)$
+
+The income effect, $\Delta x^n$, is the change in the demand for good x when we change income from  $I^2$ to $I^1$, holding the price of good x fixed at  $p_x^2$:
+
+\[
+\Delta x^n = x(p_x^2,I^1) - x(p_x^2,I^2)
+.\] 
+
+The income effect can increase or decrease the demand for a good depending on whether the good is normal or inferior.
+   
+
+
+
+
+\textcolor{blue}{The total change in demand},
+\[ \Delta x = x(p_x^2,m) - x(p_x^1, m) .\]
+\[ \Delta x = \Delta x^s + \Delta x^n  .\] 
+\[ \Delta x =  x(p_x^2,m) - x(p_x^1, m)   =   [x(p_x^2,I^2) - x(p_x^1,I^1)] + [x(p_x^2,I) - x(p_x^2,I^2)] .\]
+\marginnote{ \textcolor{blue}{Slutsky Identity}}
+
+The substitution effect is always negative - opposite to the change in price - the income effect can go either way.
+
+
+
+
+
+\textbullet \textcolor{blue}{Normal good} - sub. effect and income effect work in the same direction. If price increase, demand goes down due to sub effect, and since the price rise is like income drop, it will lead to decreased deamand. So both effects reinforce each other. 
+
+
+\marginnote{ \Delta x = \Delta x^s + \Delta x^n \\ (-) \quad (-) \quad (-) }
+
+\textbullet \textcolor{blue}{Inferior good} - The income effect might outweigh   the sub effect, so that the total change in demand associated with a price increase is actually positive. \marginnote{ \Delta x = \Delta x^s + \Delta x^n \\ (?) \quad (-) \quad (+) } If the income effect effect - is large enough, the total change in demand could be positve i.e that an increase in price result in an increase in demand. 
+
+The \textcolor{blue}{Giffen} case: the increase in price has reduced the consumer's puchasing power so much that the has increased his consumption of the inferior good.
+
+Slutsky identity implies that the giffen behaviour can only occur for inferior goods: if agood is a normal good, then the IE and SE reinforce each other, so that the total change in demand is alaways in the 'right' direction.
+
+
+\marginnote{ \textcolor{blue}{Giffen's Paradox:} If the income effect of a price change is strong enough, the change in price and the resulting change in the quantity demanded could actually move in the same direction.}
+
+
+
+
+\textcolor{blue}{Thus a Giffen good must be an inferior good. But an inferior good is not necessarily a Giffen good}: the income effect not only has to be of the “wrong” sign, it also has to be large enough to outweigh the “right” sign of the substitution effect.
+
+
+
+
+
+
+
+\clearpage
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+		\item \textbf{Substitution Effect} involves movement along initial IC from $(x^*,y*)$ to a point $(x,y)$ such that  $x > x^*$ and $(x^*,y^*) \sim (x,y)$, where the MRS is eaual to the new price ratio i.e the IC is tangential to the compensated budget constraint.It's about the change in the quantity of good when price changes, holding utility constant. 
+		\item  \textbf{Income effect} entails  movement to a higher utility, because real $($effective $)$ income had increased.It explains the change in quantity of goods as income changes, holding prices constant.
+\end{enumerate}
+Both income and substitution effect cause more $x$ to be bought when its price declines (for a normal good).
+
+When price of a good changes,
+\begin{enumerate}
+		\item The rate at which you can exchange one good for another changes i.e MRS changes
+		\item Total purchasing power of the income is altered
+		
+\end{enumerate}
+
+\marginnote{ Substitution effect is always negative }
+\marginnote { For normal goods, income and substitution effect works in the same direction}
+
+eg: Consider $x_1,p_1,x_2,p_2$, if  $p_1$ drops, you can give up less of  good 2 to buys good 1. The change in price of good 1 has changed the rate at which the market allows you to substitute good 2 for good 1. The trade-off between the two goods that the presents the consumer has changed. As good 1 has become cheaper, the same amount of money will buy more of good 1. Purchasing power of your money goes up, although the number of dollars you have is the same, the amount that they will buy has increased.\\
+\textbf{ The change in demand due to the change in rate of exchange between the two goods is called substitution effect. The second effect,ie change in demand due to having more purchasing power is called income effect}
+
+The price movement can be broken down as follwing for the purpose of analysis,
+\begin{enumerate}
+		\item Let the relative prices change and adjust money income so as to hold purchasing power constant
+		\item Then let purchasing power adjust while holding the relative prices constant.
+		
+\end{enumerate}
+
+\clearpage
+
+
+\textbf{\centering \large Uncompensated and Compensated Demand Curves}\\ 
+\vspace{0.5cm}
+
+\textbullet An individual's \textcolor{blue}{uncompensated} or \textcolor{blue}{Marshallian}, $x(p_x,\overline{p}_y,\overline{I})$,  demand curve shows relationship between the price of a good and the quantity of that good purchased by the individual, assuming that all other prices and income are held constant.
+
+\textbullet A \textcolor{blue}{compensated} or \textcolor{blue}{Hicksian} demand curve  $x^c(p_x,\overline{p}_y,\overline{U})$, shows the relationship between the price of a good and the quantity purchased on the assumption that other prices and utility are held constant. Thus the curve illustrates only substitution effect.
+
+
+
+The Hicksian demand $h_x$ shows how the quantity fo  $x$ demanded changes with  $p_x$, holding  $p_y$ and utility constant i.e the individual's income is compensated for, so as to keep the utility constant. Thus  $h_x$ reflects only substitution effects of changing prices.
+
+
+
+\begin{marginfigure} %{r}{0.25\textwidth} %this figure will be at the right
+    %\centering
+    \includegraphics[width=1\textwidth]{demand.jpg}
+\end{marginfigure}
+Compensated or Hicksian demand $h_x$ and uncompensated  $d_x$ demand curves intersect at  $p_x^{''}$ because  $x^{''}$ is demanded under both concepts,since at that price the individual's income is just sufficient to attain the utility level
+\begin{enumerate}
+	\item For $p_x > p_x^{''}$, the individual's income is increased with compensated demand curve, so  more $x$ is demanded than with the uncompensated curve. 
+	\item For $p_x < p_x^{''}$ i.e when price is reduced, the individual's income is decreased with compensated demand curve, so less  $x$ is demanded than with the uncompensated curve.
+\end{enumerate}
+The $d_x$ curve is flatter because it incorporates both substitution and income effects [ ie for the same change in price, $\Delta p_x$, change in quantity demanded $\Delta x$ is higher thus  
+$\frac{\Delta p_x}{\Delta y} $ is low]  whereas  $h_x$ reflects only substitution effect.
+
+
+\marginnote{Ordinary demand curve is more elastic???}
+
+
+
+\clearpage
+
+\textbf{\large{\centering Slutsky's Equation}} \\ 
+The utility maximization hypothesis shows that the substitution and income effects arising from a price change can be represented by
+\[
+		\frac{\partial d_x}{\partial p_x} =
+\underbrace{\frac{\partial x}{\partial p_x} \Big|_{u = const.}}_{\text{Substitution effect}} 
+- \underbrace{x \frac{\partial x}{\partial I}}_{\text{Income effect}}
+.\] 
+
+
+\clearpage
+
+\textbf{\large{Duality [of optimization problem] }}\\
+Maximizing utility given income constraint and minimizing expense to get a certain utility are equivalent problems i.e \textbf{ What is the minimium amoutn that needed to be expended to attain at least that level of utility?}
+
+\vspace{0.5cm}
+
+\textcolor{blue}{\textbf{Expenditure Function}}
+
+
+\textbullet  Consumer with consumption set $ X  \subseteq   \mathbb{R}^L_+$
+
+\textbullet  preferences given by a continuous utility function 
+$u: X \to R$
+
+\textbullet  for brevity, assume $X = \mathbb{R_+ ^L}$
+
+\textbullet   The utility maximization problem(UMP):
+
+\[v(p,w) \equiv \max_{x \in \mathbb{R}_+^L} u(x) .\]
+\[ s.t : px \leq w .\]
+
+with $s \geq 0$ and  $p >> 0$, with  $v(p,w)$ the indirect utility function.
+
+\textbullet  The result of the UMP can be substituted back in the utility function to obtain the utility at the maximal solution, called as \textcolor{blue}{value function or indirect utility function, v(p,w)}.The maximized utility is a function of the parameters or exogenous variables of the problem i.e price vector $p$ and income $w$. 
+
+
+\textbullet  Let $ u =v(p,w)$ the attained utility level for this problem.
+
+
+\textbullet  The \textcolor{blue}{Expenditure minimization problem (EMP)} is a related problem.
+
+
+\textbullet   \textcolor{blue}{ What is the minimum amount that needs to be expended to attain at least that level of utility ?}
+
+\[ e(p,u) \equiv \min_{x \in \mathbb{R}_+ ^L} px  .\]  
+\[s.t : u(x) \geq u .\]
+
+\textbullet   The function $e(p,u)$ is called the expenditure function. It's the expenditure at the minimal solution i.e  $px^*$ where  $x^*$ is the minimizing solution or  $x=x^*$ is where the expenditure is minimum for the given parameters and constraint.
+
+ \textbullet  minimized expenditure at the optimum, $e(p,u)$ is the function of parameters of the problem  $(p,u)$
+
+Geometrically, given an IC move the budget line towards the origin, such that it's atleast tangential to the IC.
+
+$e(p,u)$ is concave. Derivative of  $e$ is demand.  $\frac{\partial^2 x}{\partial p^2}$ is concave since e is concave. ?????
+
+That is why slutsky's equation holds, sice we are looking at matrix of 2nd order conditions, effectively is concave since e is concave. ?????
+
+That is why slutsky's equation holds, sice we are looking at matrix of 2nd order conditions, effectively.????
+
+
+
+
+
+
+\begin{prop}[Duality, Mass-Collel Prop. 3.E.1]
+		Suppose that $u(.)$ is a continuous utility function representing a locally non-satiated preference relation $\succeq$ defined on the consumption set  $X = \mathbb{R}^L_+$ and the price vector  $p >> 0$. We then have that 
+		\begin{enumerate}
+				\item If $x^*$ is an optimal bundle (in the UMP) when wealth is  $w > 0$, then  $x^*$ is optimal in EMP when required utility level is  $u(x^*)$. Moreover, the minimized expenditure level in EMP is exactly  $w$.
+		
+				\item If $x^*$ is optimal (in EMP) when the required utility level is  $u > u(0)$, then  $x^*$ is optimal(in the UMP) when wealth is  $px^*$(= the minimized expenditure). Moreover, the maximized utility (in the UMP) is ecactly u.
+		\end{enumerate}
+		
+\end{prop}
+
+\clearpage
+
+Given a price vector $p$ and  income/wealth $w$, solve UMP, substitute the maximizing demands into the utility function to obtain indirect utility function. Starting with that level of utility, we do EMP and the minimized expenditures at that  $p$ and that particular utility level is  $w$
+
+ \[
+		 e[ \ p,v(p,w) \ ] = w \ \forall \  (p,w)
+.\] 
+wherw $v(.)$ is the value function.
+
+If we start with parametrized level of utility  $u$ and given price vector $p$ in the EMP  $e(p,u)$, then at  that level of utility, $u$ if we take the minimized expenditure $e(p,u)$ and substitute it as a wealth term and solve UMP at that wealth, we should get that the indirect utility is exactly the  $u$ we started with.
+
+
+\[
+		v[\ p,e(p,u) \ ] = u \ \forall \ (p,u)
+.\] 
+
+These implies that given a price vector $p$ the functions  $e(\overline{p},.)$ and $v(\overline{p}, .)$ are inverses of each other. This result is known as duality between the expenditure minimization and utility maximization.
+
+
+The Hicksian demand is usually called the \textbf{compensated demand}, the idea comes from the following though exercise: suppose prices change from p to p' maintaining the income $w$ fixed. The initial demand were given by x(p,w). Define new wealth as $w' = e[p',u]$, it is the minimized expenditure at the initial level of utility $u =v(p,w)$ and new price vector $p'$. This level of income $w'$ is the one that, under the new prices  $p'$ would minimize expenditures at $p'$ necessary to achieve the exact same indirect utility  $v(p,w)$. In that sense we are compensating the agent for the change in the purchasing power of their wealth, by letting here achieve the same level of utility as before. However, that does not mena that the demand will remainn constant: the new demand will begiven by
+
+
+
+\[
+		x' =  x(p',w') =x[p',e(p',u)] = h(p',u)
+.\] 
+
+\clearpage
+
+%The total change in demand, $\Delta x = x(p_x^2,m) - x(p_x^1, m)$ 
+
+
+
+\section*{\centerline{Production}}
+
+\textbullet  Firm's have production capabilities. Production takes some commodities as inputs, and generates some commodities as outputs.
+
+\textbullet  Each firm's procutive capabilities can be modeled by a set of \textcolor{blue}{ netput} vectors in $\mathbb{R}^k$ - this is the firm's \textcolor{blue}{production possibility set}
+
+\textbullet   By convention inputs are negative and output positive.
+
+\section*{\textbf{Production Possiblility set}}
+
+\textbullet   Let Z denote a firm's production possiblity set( or technology set)
+\textbullet  we write $z = (z_1,z_2,...,z_k) \in Z$, where K is the number of commodities and $z_k$ denotes the quantity of commodity k in each netput vector
+
+\textbullet   for firm $j$, production set :  $Z_j$ and netput vector  $z_j = (z_{j_1},z_{j_2},...,z_{jk})$
+
+\vspace{1cm}
+
+
+\textbf{Possible properties of a PPS}
+
+\textbullet   Non-empty:The firm has something it can plan to do.
+
+\textbullet   \textcolor{blue}{Closed:} The set Z included its boundary i.e. the limit of a sequence of feasible netput vectors is also feasible.
+
+\textbullet   \textcolor{blue}{No Free Lunch}: Whenever
+$z \in Z$ and  $z \geq 0$, then  $z = 0$; it is not possible to produce something from nothing.
+
+\textbullet  \textcolor{blue}{Convexity}: If z and z' are both possible for the firm, then so is $\alpha z + (1-\alpha)z'$ for  $\alpha \in [0,1]$
+
+
+ \textbullet  \textcolor{blue}{Free Disposal}: If $z \in Z$ and  $z' \in z$, then  $z' \in  Z$. This is a dumpster theory of production; the firm can always throw out stuff it doesnt want.
+
+\textbullet   \textcolor{blue}{Ability to Shut Down}: $0 \in Z$, where  $0$ means the commodity vector of all zeros.
+
+\vspace{1cm}
+
+
+\textbf{Returns to Scale}
+
+\textbullet  \textcolor{blue}{Decreasing returns to scale}: If $z \in Z$ and  $0 \leq \alpha < 1$, then  $\alpha z \in Z$. This assumption is implied by convexity and $0 \in Z$, since it consists of taking a convex combination of z and 0. 
+
+ \textbullet  \textcolor{blue}{Constant returns to scale}: IF $z \in Z$, then  $\alpha z \in Z$ for any  $\alpha \geq 0$
+
+\textbullet   \textcolor{blue}{Increasing returns to scale}: if $z \in Z$ and  $\alpha > 1$, then  $\alpha z \in Z$.
+
 
 
 
@@ -59,5 +777,6 @@ $x =(x_1, x_2,...,x_n)$ where $n$ is the number of goods and $x_k$ is the quanti
 
 
 \end{document}
+
 
 
