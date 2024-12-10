@@ -398,17 +398,6 @@ p_1x_1 + ... + p_nx_n \le I
 where $p_k$ is price of good $k$ and  $I$ is the income of the consumer. \\ 
 
 
-\textbf{Homogeneity}
-
-$p_1x_1 + ... + p_nx_n \le I$ is equivalent to $(tp_1)x_1 + ... +(tp_nx_n) \le tI, t>0$. So individual demand $x(p_1,..., p_n, I)$ is \textcolor{blue}{homogeneous of degree zero} in all prices and income.\\
-$x(p_1, ...,p_n, I) = x(tp_1, ..., tp_n, tI)$ i.e, demand cant change since the budget constraint hasnt changed.
-
-\marginnote[-2cm]{If we were to double all prices and income (or multiply them all by any positive constant), then the optimal quantity demanded would remain unchanged.}
-
-\marginnote{A function $f(x_1,x_2,...,x_n)$ is said to be \textcolor{blue}{homogeneous of degree k} if  $f(tx_1,tx_2,...,tx_n) = t^kf(x_1,x_2,...,x_n)$ for any $t>0$ 
-}
-
-
 
 \section*{\textbf{Demand Functions}}
 
@@ -417,10 +406,25 @@ Solving the consumer utility maximization yields
 x_i^* = d_i(p_1,...,p_n, I)
 .\] 
 where $d_k$ is the individual's demand function for good k,  $p_k$ is the price of good k and I is individual's income.
-How does individual demand functions respond to changes in income and prices?.
+How does individual demand functions respond to changes in income and prices i.e we will look at $\frac{\partial  x }{\partial I }$ and $\frac{\partial x }{\partial  p_x }$
 
 \marginnote[-2cm]{$x^* =  x(p_x,p_y,I)$, the notation stresses that prices and income are \textcolor{blue}{exogenous} to this process}
 
+
+\vspace{1cm}
+
+
+\textbullet  \textcolor{blue}{Homogeneity}  $p_1x_1 + ... + p_nx_n \le I$ is equivalent to $(tp_1)x_1 + ... +(tp_nx_n) \le tI, t>0$. So individual demand $x(p_1,..., p_n, I)$ is \textcolor{blue}{homogeneous of degree zero} in all prices and income.\\
+$x(p_1, ...,p_n, I) = x(tp_1, ..., tp_n, tI)$ i.e, demand cant change since the budget constraint hasnt changed.
+
+
+\textcolor{red}{Homogeneity of demand is a direct reslult of the utility-maximization assumptions . Demand function derived from utility maximization will be homogeneous and conversely, demand functions that are not homogeneous cannot reflect utility maximization.} \textcolor{blue}{prove}
+
+
+\marginnote[-2cm]{If we were to double all prices and income (or multiply them all by any positive constant), then the optimal quantity demanded would remain unchanged.}
+
+\marginnote{A function $f(x_1,x_2,...,x_n)$ is said to be \textcolor{blue}{homogeneous of degree k} if  $f(tx_1,tx_2,...,tx_n) = t^kf(x_1,x_2,...,x_n)$ for any $t>0$ 
+}
 
 
 
@@ -727,6 +731,11 @@ The Hicksian demand is usually called the \textbf{compensated demand}, the idea 
 
 \section*{\centerline{Production}}
 
+
+\iffalse
+
+
+
 \textbullet  Firm's have production capabilities. Production takes some commodities as inputs, and generates some commodities as outputs.
 
 \textbullet  Each firm's procutive capabilities can be modeled by a set of \textcolor{blue}{ netput} vectors in $\mathbb{R}^k$ - this is the firm's \textcolor{blue}{production possibility set}
@@ -771,7 +780,79 @@ $z \in Z$ and  $z \geq 0$, then  $z = 0$; it is not possible to produce somethin
 \textbullet   \textcolor{blue}{Increasing returns to scale}: if $z \in Z$ and  $\alpha > 1$, then  $\alpha z \in Z$.
 
 
+\fi
 
+\textbullet  The \textcolor{blue}{firm's production} function for a particular good, q,
+
+\[
+q =  f(k,l)
+.\] 
+
+shows maximum amount of good that can be produced using alternative combination of capital(k) and labour (l).
+
+\textbullet  \textcolor{blue}{Marginal Physical Product} of an input is the additional output that can be produced by using one more unit of that input while holding all other inputs constant.
+
+\[
+MP_k = \frac{\partial q}{\partial k} = f_k, \ MP_l = \frac{\partial q}{\partial l} =  f_l
+
+.\] 
+\textbullet  \textcolor{blue}{Diminishing Marginal Productivity}
+
+\[
+		\frac{\partial MP_k}{\partial k} = \frac{\partial^2 f}{\partial k^2} = f_{kk} < 0 
+.\] 
+
+\[
+		\frac{\partial MP_l}{\partial l} = \frac{\partial^2 f}{\partial l^2} = f_{ll} < 0 
+.\] 
+
+
+\textbullet  \textcolor{blue}{Average Physical Productivity} usually means labout productivity.
+
+
+\[
+AP_l = \frac{output}{labour \ input} = \frac{q}{l} = \frac{f(k,l)}{l}
+.\] 
+
+\marginnote{$AP_l$ also depends on capital used.}
+
+$$\frac{\partial AP_l}{\partial l} =  \frac{l.f_l - f(k,l)}{l^2} = 
+\frac{l.MP_l - q}{l^2}
+
+$$ 
+
+At maximum $AP_l$,  $\frac{\partial AP_l }{\partial l } = 0$
+
+
+
+$$ l.MP_l - q = 0 \implies l.MP_l = q \ \ MP_l = \frac{q}{l} = AP_l \ \ ;  MP_l = AP_l $$
+		
+\textcolor{blue}{When $AP_l$ is at maximum, average and marginal productivities of labour are equal}
+
+
+\textbullet  \textcolor{blue}{Isoquant} An isoquant shows those combination of k and l that can prduce a given level of output, say $q_0$.
+Mathematically, an isoquant records the set of k and l that satisfies  $f(k,l) = q_0$
+
+
+\clearpage
+
+\textbullet   \textcolor{blue}{Marginal Rate of Technical Substitution} The marginal rate of technical substitution (RTS) shows that the rate at which labour can be substituted for capital while holding output constant along an isoquant.
+
+
+
+\[
+		RTS(l \ for \  k) = -\frac{dk}{dl} |_{q=q_0}
+.\] 
+
+
+ The particular value of trade-off rate will depend not only on the level of output but also on the quantities of k,l being used.
+
+The isoquant curves is the graph of the implicit function $k(l)$ satisfying  $q_0 = f(k(l),l)$. On differentiating w.r.t l,
+
+
+$$0 = f_k \frac{dk}{dl} + f_l = MP_k \frac{dk}{dl} + MP_l$$
+
+$$RTS =  -\frac{dk}{dl} | _{q = q_0} =  \frac{MP_l}{MP_k}$
 
 
 
